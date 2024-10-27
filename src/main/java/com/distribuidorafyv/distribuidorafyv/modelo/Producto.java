@@ -1,13 +1,28 @@
-package com.distribuidorafyv.distribuidorafyv.logica;
+package com.distribuidorafyv.distribuidorafyv.modelo;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Producto {
     
+    //Atributos
     private int idProducto;
     private String nombre;
     private int stock;
     private double precio; 
     private int proveedor;
-
+    private static Map<Integer, Producto> productos = new HashMap<>();
+    
+    //Datos iniciales
+    static {
+        new Producto(1, "Manzanas", 2, 100,12);
+        new Producto(2, "Naranjas", 1, 150,12);
+        new Producto(3, "Plátanos", 1, 200,12);
+        new Producto(4, "Peras", 2, 80,12);
+        new Producto(5, "Uvas", 3, 90,12);
+    }
+    
+    //Constructores
     public Producto() {
     }
 
@@ -17,13 +32,15 @@ public class Producto {
         this.stock = stock;
         this.precio = precio;
         this.proveedor = proveedor;
+        productos.put(idProducto, this);
     }
     
-    public void registrarProducto(){
-        System.out.println("Producto registrado: " + nombre + ", Stock: " + stock + ", Precio: " + precio + ", Proveedor CUIL: " + proveedor);  
+    //Métodos
+    public static Producto buscarPorCodigo(int id) {
+        return productos.get(id);
     }
     
-    
+    //Getters y Setters
     public int getIdProducto() {
         return idProducto;
     }
@@ -63,5 +80,4 @@ public class Producto {
     public void setProveedor(int proveedor) {
         this.proveedor = proveedor;
     }
-    
 }

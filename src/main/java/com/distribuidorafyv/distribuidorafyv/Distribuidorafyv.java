@@ -1,13 +1,13 @@
 package com.distribuidorafyv.distribuidorafyv;
 
-import com.distribuidorafyv.distribuidorafyv.interfaz.Principal;
+import com.distribuidorafyv.distribuidorafyv.interfaz.Login;
 
 
 public class Distribuidorafyv {
 
     public static void main(String[] args) {
-        Principal princ = new Principal();
-        princ.setVisible(true);
-        princ.setLocationRelativeTo(null);
+        Login log = new Login();
+        log.setVisible(true);
+        log.setLocationRelativeTo(null);
     }
 }
