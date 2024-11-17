@@ -3,27 +3,47 @@ package com.distribuidorafyv.distribuidorafyv.modelo;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Pedido {
     
     //Atributos
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private int nroPedido;
+    
     private LocalDateTime fecha;
     private double total;
     private int dni;
-    private List<DetallePedido> detalles;
+    private int activo;
+        
 
-    //Constructor
+   @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL) // Relación con DetallePedido
+   private List<DetallePedido> detalles = new ArrayList<>();
+
+   public Pedido() {
+       this.activo = 1;
+    }
+   
+    // Constructor
     public Pedido(int nroPedido, double total, int dni) {
         this.nroPedido = nroPedido;
         this.fecha = LocalDateTime.now();
         this.total = total;
         this.dni = dni;
-        this.detalles = new ArrayList<>();
+        this.activo = 1;
     }
 
-    //Métodos
+    // Métodos
     public void agregarDetalle(DetallePedido detalle) {
+        detalle.setPedido(this); // Establecer la relación inversa
         detalles.add(detalle);
     }
     
@@ -67,4 +87,14 @@ public class Pedido {
     public void setDetalles(List<DetallePedido> detalles) {
         this.detalles = detalles;
     }
+
+    public int getActivo() {
+        return activo;
+    }
+
+    public void setActivo(int activo) {
+        this.activo = activo;
+    }
+    
+    
 }

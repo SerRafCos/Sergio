@@ -15,7 +15,7 @@ public class Productos extends javax.swing.JFrame {
      */
     public Productos() {
         initComponents();
-        btnConsultarProducto.setEnabled(false);
+        
     }
 
     /**
@@ -34,7 +34,7 @@ public class Productos extends javax.swing.JFrame {
         btnVolverProductos = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
         jLabel1.setText("PRODUCTOS");
@@ -115,7 +115,9 @@ public class Productos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConsultarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarProductoActionPerformed
-        // TODO add your handling code here:
+        VentanaConsultarProducto consulta = new VentanaConsultarProducto();
+        consulta.setVisible(true);
+        consulta.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnConsultarProductoActionPerformed
 
     private void btnVolverProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverProductosActionPerformed

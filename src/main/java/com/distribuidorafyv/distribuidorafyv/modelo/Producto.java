@@ -1,52 +1,47 @@
 package com.distribuidorafyv.distribuidorafyv.modelo;
 
-import java.util.HashMap;
-import java.util.Map;
 
-public class Producto {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Producto  {
     
     //Atributos
-    private int idProducto;
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private int id;
+    
     private String nombre;
     private int stock;
     private double precio; 
     private int proveedor;
-    private static Map<Integer, Producto> productos = new HashMap<>();
+
     
-    //Datos iniciales
-    static {
-        new Producto(1, "Manzanas", 2, 100,12);
-        new Producto(2, "Naranjas", 1, 150,12);
-        new Producto(3, "Plátanos", 1, 200,12);
-        new Producto(4, "Peras", 2, 80,12);
-        new Producto(5, "Uvas", 3, 90,12);
-    }
     
     //Constructores
     public Producto() {
     }
 
-    public Producto(int idProducto, String nombre, int stock, double precio, int proveedor) {
-        this.idProducto = idProducto;
+    public Producto(int id, String nombre, int stock, double precio, int proveedor) {
+        this.id = id;
         this.nombre = nombre;
         this.stock = stock;
         this.precio = precio;
-        this.proveedor = proveedor;
-        productos.put(idProducto, this);
+        this.proveedor = proveedor;       
     }
     
-    //Métodos
-    public static Producto buscarPorCodigo(int id) {
-        return productos.get(id);
-    }
+
     
     //Getters y Setters
     public int getIdProducto() {
-        return idProducto;
+        return id;
     }
 
     public void setIdProducto(int idProducto) {
-        this.idProducto = idProducto;
+        this.id = idProducto;
     }
 
     public String getNombre() {

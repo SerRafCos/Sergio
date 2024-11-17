@@ -2,28 +2,34 @@ package com.distribuidorafyv.distribuidorafyv.modelo;
 
 import java.util.HashMap;
 import java.util.Map;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 public class Proveedor {
     
-    //Atributos
+    @Id
     private int cuit;
+    
     private String nombre;
     private int telefono;
+    private String localidad;
+
+   
     private static Map<Integer, Proveedor> proveedores = new HashMap<>();
     
     //Datos iniciales
-    static {
-        new Proveedor(12345678, "Juan Pérez", 5551234);
-        new Proveedor(87654321, "María López",5555678);
-        new Proveedor(45678912, "Carlos Rodríguez",559012);
+
+    //Constructor
+    public Proveedor() {
+       
     }
     
-    //Constructor
-    public Proveedor(int cuit, String nombre, int telefono) {
+    public Proveedor(int cuit, String nombre, int telefono, String localidad) {
         this.cuit = cuit;
         this.nombre = nombre;
         this.telefono = telefono;
-        proveedores.put(cuit, this);
+        this.localidad = localidad;
     }
     
     //Métodos
@@ -62,5 +68,13 @@ public class Proveedor {
 
     public static void setProveedores(Map<Integer, Proveedor> proveedores) {
         Proveedor.proveedores = proveedores;
+    }
+    
+     public String getLocalidad() {
+        return localidad;
+    }
+
+    public void setLocalidad(String localidad) {
+        this.localidad = localidad;
     }
 }

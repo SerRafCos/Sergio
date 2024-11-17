@@ -1,12 +1,22 @@
 package com.distribuidorafyv.distribuidorafyv.logica;
 
 import com.distribuidorafyv.distribuidorafyv.modelo.Producto;
+import com.distribuidorafyv.distribuidorafyv.modelo.ProductoJpaController;
 import com.distribuidorafyv.distribuidorafyv.modelo.Proveedor;
+import javax.persistence.PersistenceException;
 
 public class ControladorRegistrarProducto {
     
+    private ProductoJpaController prodJpa = new ProductoJpaController();
+    
     //Constructor
     public ControladorRegistrarProducto() {       
+    }
+    
+
+    // Constructor con inyección de dependencias
+    public ControladorRegistrarProducto(ProductoJpaController prodJpa) {       
+        this.prodJpa = prodJpa;
     }
        
     //Métodos
@@ -39,24 +49,29 @@ public class ControladorRegistrarProducto {
             throw new Exception("El precio debe ser mayor a cero");
         }
         
-        //Registro del producto
         try {
             Producto prod = new Producto();
             prod.setNombre(nombre);
             prod.setStock(stock);
             prod.setPrecio(precio);
             prod.setProveedor(proveedor);
-                                
-        } catch (Exception e) {        
+            prodJpa.create(prod);
+            
+
+        } catch (PersistenceException e) {
+            System.err.println("Error de persistencia al registrar producto: " + e.getMessage());
+            throw new Exception("Error al registrar el producto en la base de datos.", e);
+        } catch (Exception e) {
             System.err.println("Error al registrar producto: " + e.getMessage());
             throw e;
-        }        
+        }     
     }
     
-    public Proveedor buscarProveedor(String cuit) throws IllegalArgumentException {
+    public Proveedor buscarProveedor(String cuitStr) throws IllegalArgumentException {
         try {
-            int cuitProveedor = Integer.parseInt(cuit);
-            Proveedor proveedores = Proveedor.buscarPorCuit(cuitProveedor);
+            int cuit = Integer.parseInt(cuitStr);
+            ControladoraConsultarProveedor controladoraProv = new ControladoraConsultarProveedor();
+            Proveedor proveedores = controladoraProv.obtenerProveedorIndividual(cuit);
             if (proveedores == null) {
                 throw new IllegalArgumentException("Proveedor no encontrado");
             }
@@ -65,4 +80,6 @@ public class ControladorRegistrarProducto {
             throw new IllegalArgumentException("Cuit proveedor inválido");
         }
     }
+    
+  
 }
