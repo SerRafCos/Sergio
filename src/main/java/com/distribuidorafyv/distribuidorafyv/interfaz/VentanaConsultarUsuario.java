@@ -118,7 +118,7 @@ public class VentanaConsultarUsuario extends javax.swing.JFrame {
 
                 control.eliminarLogicamenteUsuario(idUsuario);
 
-                mostrarMensaje("Proveedor eliminado");
+                mostrarMensaje("Usuario eliminado");
 
                 cargarTabla();
 
@@ -128,7 +128,7 @@ public class VentanaConsultarUsuario extends javax.swing.JFrame {
 
         } else {
 
-            mostrarError("No existen proveedores para eliminar");
+            mostrarError("No existen usuarios para eliminar");
 
         }
     }//GEN-LAST:event_btnEliminarUsuarioActionPerformed

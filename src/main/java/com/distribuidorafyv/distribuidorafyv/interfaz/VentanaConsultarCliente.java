@@ -130,7 +130,7 @@ public class VentanaConsultarCliente extends javax.swing.JFrame {
 
                 control.eliminarLogicamenteCliente(dni);
 
-                mostrarMensaje("Proveedor eliminado");
+                mostrarMensaje("Cliente eliminado");
 
                 cargarTabla();
 
@@ -140,7 +140,7 @@ public class VentanaConsultarCliente extends javax.swing.JFrame {
 
         } else {
 
-            mostrarError("No existen proveedores para eliminar");
+            mostrarError("No existen clientes para eliminar");
 
         }
     }//GEN-LAST:event_btnEliminarClienteActionPerformed
